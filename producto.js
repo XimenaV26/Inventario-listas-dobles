@@ -1,8 +1,8 @@
 class Producto{
     //Variables estaticas
     static cont=0;
-    constructor(nombre, descripcion, cantidad, costo){
-        this.id=++Producto.cont;
+    constructor(codigo, nombre, descripcion, cantidad, costo){
+        this._codigo=++Producto.cont;
         this._nombre=nombre;
         this._descripcion=descripcion;
         this._cantidad=cantidad;
@@ -16,8 +16,12 @@ class Producto{
         return this._siguiente;
     }
 
+    mostrarAnterior(){
+        return this._anterior;
+    }
+
     codigo(){
-        return this.id;
+        return this._codigo;
     }
 
     CSiguiente(siguiente){
@@ -32,22 +36,24 @@ class Producto{
     mostrarInfo(){
         return (
             "ID: " + 
-            this.id + 
+            this._codigo + 
             " Nombre: " + 
             this._nombre +
+            " Descripcion " +
+            this._descripcion +
             " costo " +
             this._costo +
             " $ "+
-            this.valorMercancia);
+            this.valorMercancia());
 
     }
 
-    get valorMercancia(){
+    valorMercancia(){
         return this._costo*this._cantidad; 
     }
 
     mostrarInfoJSon(){ //Json
-        return {id:this.id, Nombre:this._nombre, 
+        return {id:this._codigo, Nombre:this._nombre, 
             Descripcion:this._descripcion, Cantidad:this._cantidad, 
             Costo:this._costo}
 
